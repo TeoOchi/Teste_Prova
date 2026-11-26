@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentação: Sistema de Cadastro de Motores | CentroWEG</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container header-content">
+            <div class="brand">
+                <span class="badge">SENAI • CentroWEG</span>
+                <h1>Sistema de Cadastro de Motores</h1>
+                <p class="subtitle">Documentação Técnica do Protótipo em Python (CRUD em Memória)</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <!-- Seção de Contexto / Onde foi desenvolvido -->
+        <section class="card context-card">
+            <h2>Sobre o Projeto e Ambiente de Desenvolvimento</h2>
+            <p>
+                Este software foi desenvolvido como projeto prático no <strong>CentroWEG</strong>, a escola técnica do <strong>SENAI</strong> localizada dentro do parque fabril da <strong>WEG</strong>, em <strong>Jaraguá do Sul - SC</strong>.
+            </p>
+            <p>
+                O objetivo da aplicação é simular o gerenciamento de ativos industriais (motores elétricos) utilizando lógica de programação estruturada em Python, sem dependências de bancos de dados externos.
+            </p>
+            <div class="location-tags">
+                <span>📍 Jaraguá do Sul, Santa Catarina</span>
+                <span>🏭 CentroWEG / SENAI</span>
+                <span>🐍 Python 3 (Monolítico)</span>
+            </div>
+        </section>
+
+        <!-- Seção de Arquitetura do Código -->
+        <section class="card">
+            <h2>Arquitetura e Funcionamento do Código</h2>
+            <p class="section-desc">
+                O script foi construído de forma monolítica em um único arquivo, dividindo responsabilidades em funções específicas e armazenando os dados temporariamente na memória RAM.
+            </p>
+
+            <div class="grid-features">
+                <div class="feature-box">
+                    <h3>1. Estrutura de Dados (Array + Dict)</h3>
+                    <p>
+                        Utiliza uma lista global <code>motores = []</code> (array dinâmico) onde cada elemento armazenado é um <strong>dicionário</strong> contendo as especificações técnicas: Número de Série, Fabricante, Modelo, Potência, Tensão e RPM.
+                    </p>
+                </div>
+
+                <div class="feature-box">
+                    <h3>2. Validação de Unicidade</h3>
+                    <p>
+                        Na função <code>cadastrar_motor()</code>, o sistema percorre o array antes de inserir um novo registro para garantir que não existam dois motores com o mesmo <strong>Número de Série</strong>.
+                    </p>
+                </div>
+
+                <div class="feature-box">
+                    <h3>3. Operações CRUD Completas</h3>
+                    <p>
+                        Implementa todo o ciclo de vida de dados: <strong>C</strong>reate (Cadastrar), <strong>R</strong>ead (Listar e Buscar), <strong>U</strong>pdate (Atualizar mantendo dados em branco) e <strong>D</strong>elete (Remover com confirmação).
+                    </p>
+                </div>
+
+                <div class="feature-box">
+                    <h3>4. Loop Principal (CLI)</h3>
+                    <p>
+                        A função <code>main()</code> mantém um laço <code>while True</code> que exibe o menu interativo no terminal e direciona o fluxo conforme a escolha do operador.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Mapeamento de Funções -->
+        <section class="card">
+            <h2>Mapeamento das Funções Python</h2>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Função</th>
+                            <th>Responsabilidade</th>
+                            <th>Estrutura Utilizada</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>exibir_menu()</code></td>
+                            <td>Imprime a interface textual de opções no console.</td>
+                            <td>Saída padrão (<code>print</code>)</td>
+                        </tr>
+                        <tr>
+                            <td><code>cadastrar_motor()</code></td>
+                            <td>Coleta dados, valida o ID único e insere no array.</td>
+                            <td>Laço <code>for</code> + <code>list.append()</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>listar_motores()</code></td>
+                            <td>Exibe todos os motores cadastrados de forma formatada.</td>
+                            <td>Função <code>enumerate()</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>buscar_motor()</code></td>
+                            <td>Localiza e exibe a ficha completa via número de série.</td>
+                            <td>Busca linear no array</td>
+                        </tr>
+                        <tr>
+                            <td><code>atualizar_motor()</code></td>
+                            <td>Altera atributos específicos preservando campos vazios.</td>
+                            <td>Mutação de dicionário</td>
+                        </tr>
+                        <tr>
+                            <td><code>remover_motor()</code></td>
+                            <td>Exclui o registro após confirmação do usuário.</td>
+                            <td><code>list.pop(i)</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Seção com Trecho do Código -->
+        <section class="card">
+            <h2>Exemplo da Estrutura de Dados no Código</h2>
+            <p class="section-desc">Trecho demonstrando como cada motor é estruturado dentro do array principal:</p>
+            <pre><code>motores = []  # Array global em memória
+
+novo_motor = {
+    "numero_serie": "WEG-2026-001",
+    "fabricante": "WEG",
+    "modelo": "W22 IR3 Premium",
+    "potencia": "10 CV",
+    "tensao": "220V/380V",
+    "rpm": "1750"
+}
+
+motores.append(novo_motor)</code></pre>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Desenvolvido no <strong>CentroWEG (SENAI)</strong> • Jaraguá do Sul - SC</p>
+            <p class="footer-note">Documentação de Projeto Acadêmico • Desenvolvimento de Sistemas</p>
+        </div>
+    </footer>
+
+</body>
+</html>
